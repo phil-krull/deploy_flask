@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Wall</title>
+</head>
+<body>
+    <h1>Welcome {{ user['first_name'] }}</h1>
+    <form action="/logout" method="post">
+        <button>Logout</button>
+    </form>
+    <h2>Send Users</h2>
+    <p>You have sent {{ sent_messages[0]['num_sent'] }}!</p>
+    {% for user in other_users %}
+        <p>{{ user['first_name'] }}</p>
+        <form action="/messages" method="post">
+            <input type="hidden" name="reciever_id" value="{{ user['id'] }}">
+            <textarea name="content" id="" cols="10" rows="2"></textarea>
+            <button>Send Message</button>
+        </form>
+    {% endfor %}
+    <h2>You have {{ messages|length }} messages!</h2>
+    {% for message in messages %}
+        <p>{{ message['sender'] }} wrote: ({{ message['created_at']</p>
+        <p>{{ message['content'] }}</p>
+        <form action="/messages/{{ message['id'] }}/delete" method="post">
+            <input type="hidden" name="message_id" value="{{ message['id'] }}">
+            <button>Delete</button>
+        </form>
+        <hr>
+    {% endfor %}
+</body>
+</html>

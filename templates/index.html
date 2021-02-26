@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Registration</legend>
+        <form action="/register" method="post">
+            <label for="fName">First Name:</label>
+            <input type="text" id="fName" name="form_first_name">
+            <label for="lName">Last Name:</label>
+            <input type="text" id="lName" name="form_last_name">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="form_email">
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="form_password">
+            <label for="confirm_password">Password Confirmation:</label>
+            <input type="text" name="form_confirm_password" id="confirm_password">
+            <button>Register</button>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Login</legend>
+        <form action="/login" method="post">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="form_email">
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="form_password">
+            <button>Login</button>
+        </form>
+    </fieldset>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
